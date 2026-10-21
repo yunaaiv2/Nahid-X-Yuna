@@ -1,14 +1,50 @@
 
 workflows:
   android-release:
-    name: Nahid X Yuna Android Release
+    name: Nahid X Yuna - Android APK
     max_build_duration: 60
+
     environment:
       java: 17
+
     scripts:
-      - name: Build Android APK
+      - name: Inspect project files
         script: |
-          chmod +x gradlew
-          ./gradlew assembleRelease
+          echo "Checking repository structure..."
+          pwd
+          ls -la
+          find . -maxdepth 3 \
+            \( -name "gradlew" \
+            -o -name "settings.gradle" \
+            -o -name "settings.gradle.kts" \
+            -o -name "build.gradle" \
+            -o -name "build.gradle.kts" \) -print
+
+      - name: Build Android Release APK
+        script: |
+          set -e
+
+          if [ -f "./gradlew" ]; then
+            chmod +x ./gradlew
+            ./gradlew --version
+            ./gradlew assembleRelease
+
+          elif [ -f "./android/gradlew" ]; then
+            cd android
+            chmod +x ./gradlew
+            ./gradlew --version
+            ./gradlew assembleRelease
+
+          elif [ -f "./gradle/wrapper/gradle-wrapper.properties" ]; then
+            echo "Wrapper properties found, but gradlew script is missing."
+            exit 1
+
+          else
+            echo "ERROR: Gradle wrapper not found."
+            echo "Check the project structure in the build log."
+            exit 1
+          fi
+
     artifacts:
-      - app/build/outputs/apk/release/*.apk
+      - "**/build/outputs/apk/**/*.apk"
+      - "**/build/outputs/bundle/**/*.aab"
