@@ -1,0 +1,6 @@
+{
+  "name": "YUNA AI",
+  "description": "Production-oriented native Android AI assistant by Nahid H4cks with Korean-inspired virtual character, Gemini AI, voice control, floating overlay, and accessibility automation.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

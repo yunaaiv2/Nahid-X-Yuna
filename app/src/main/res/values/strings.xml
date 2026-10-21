@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">YUNA AI</string>
+    <string name="creator_brand">Nahid H4cks</string>
+    <string name="accessibility_service_label">YUNA AI Screen Companion</string>
+    <string name="accessibility_service_description">Enables YUNA AI to perform user-authorized actions such as reading accessible text on screen, clicking buttons, scrolling, and navigating back/home upon voice or text request.</string>
+    <string name="floating_service_label">YUNA AI Floating Assistant</string>
+    <string name="floating_notification_title">Yuna is active</string>
+    <string name="floating_notification_content">Tap to interact with your AI assistant.</string>
+</resources>
